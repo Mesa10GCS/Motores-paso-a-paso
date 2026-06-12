@@ -68,7 +68,7 @@ void pasoNormal(int IN0, int IN1, int IN2, int IN3, int pasos){
 void pasoCompleto_init(int IN0, int IN1, int IN2, int IN3){
     RCC->APB2ENR|=RCC_APB2ENR_IOPAEN;
     int pines[4]={IN0, IN1, IN2, IN3};
-    for(int i=0; i<7; i++){
+    for(int i=0; i<4; i++){
         if(pines[i]<8){ 
             GPIOA->CRL&=~(0xf<<(pines[i]*4));
             GPIOA->CRL|=(0x1<<pines[i]*4);
