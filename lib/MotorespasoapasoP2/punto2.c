@@ -35,7 +35,7 @@ int pasos_medio[8][4]={
 void pasoNormal_init(int IN0, int IN1, int IN2, int IN3){
     RCC->APB2ENR|=RCC_APB2ENR_IOPAEN;
     int pines[4]={IN0, IN1, IN2, IN3};
-    for(int i=0; i<7; i++){
+    for(int i=0; i<4; i++){
         if(pines[i]<8){ 
             GPIOA->CRL&=~(0xf<<(pines[i]*4));
             GPIOA->CRL|=(0x1<<pines[i]*4);
@@ -68,7 +68,7 @@ void pasoNormal(int IN0, int IN1, int IN2, int IN3, int pasos){
 void pasoCompleto_init(int IN0, int IN1, int IN2, int IN3){
     RCC->APB2ENR|=RCC_APB2ENR_IOPAEN;
     int pines[4]={IN0, IN1, IN2, IN3};
-    for(int i=0; i<7; i++){
+    for(int i=0; i<4; i++){
         if(pines[i]<8){ 
             GPIOA->CRL&=~(0xf<<(pines[i]*4));
             GPIOA->CRL|=(0x1<<pines[i]*4);
@@ -84,7 +84,7 @@ void pasoCompleto(int IN0, int IN1, int IN2, int IN3, int pasos){
 
     for(int i; i < pasos; i++){
         for(int j; j<4; j++){
-            if(pasos_normal[i%4][j])GPIOA->BSRR|=(1<<pines[j]);
+            if(pasos_completo[i%4][j])GPIOA->BSRR|=(1<<pines[j]);
             else GPIOA ->BSRR |=(1<<(pines[j]+16)); 
         }
     }
@@ -100,7 +100,7 @@ void pasoCompleto(int IN0, int IN1, int IN2, int IN3, int pasos){
 void pasoMedio_init(int IN0, int IN1, int IN2, int IN3){
        RCC->APB2ENR|=RCC_APB2ENR_IOPAEN;
     int pines[4]={IN0, IN1, IN2, IN3};
-    for(int i=0; i<7; i++){
+    for(int i=0; i<4; i++){
         if(pines[i]<8){ 
             GPIOA->CRL&=~(0xf<<(pines[i]*4));
             GPIOA->CRL|=(0x1<<pines[i]*4);
@@ -117,7 +117,7 @@ void pasoMedio(int IN0, int IN1, int IN2, int IN3, int pasos){
 
     for(int i; i < pasos; i++){
         for(int j; j<8; j++){
-            if(pasos_normal[i%8][j])GPIOA->BSRR|=(1<<pines[j]);
+            if(pasos_medio[i%8][j])GPIOA->BSRR|=(1<<pines[j]);
             else GPIOA ->BSRR |=(1<<(pines[j]+16)); 
         }
     }
@@ -128,7 +128,7 @@ void pasoMedio(int IN0, int IN1, int IN2, int IN3, int pasos){
 void MotorPaP_init(int IN0, int IN1, int IN2, int IN3){
     RCC->APB2ENR|=RCC_APB2ENR_IOPAEN;
     int pines[4]={IN0, IN1, IN2, IN3};
-    for(int i=0; i<7; i++){
+    for(int i=0; i<4; i++){
         if(pines[i]<8){ 
             GPIOA->CRL&=~(0xf<<(pines[i]*4));
             GPIOA->CRL|=(0x1<<pines[i]*4);
